@@ -1,0 +1,74 @@
+{
+  "name":"easetest",
+  "namespace":"default",
+  "cluster_name":"test",
+  "description":"The stack definition of easeapm",
+  "pulse_event_interval":10,
+  "storages":[
+    {
+
+    }
+  ],
+  "healthcheck_retry_times":20,
+  "healthcheck_interval":10,
+  "env_variables":[
+    {
+      "name":"SCRIPT_LOG_LEVEL",
+      "value":"DEBUG"
+    },
+    {
+      "name":"INFRASTRUCTURE_PROVIDER",
+      "value":"aws"
+    },
+    {
+      "name":"DOMAIN_PATH",
+      "value":"svc.cluster.local"
+    }
+  ],
+  "components":[
+    {
+      "name":"test-server",
+      "enable":true,
+      "image":"zhaokundev/easestack-test-server",
+      "image_version":"1.0-alpine",
+      "type":"Stateless",
+      "description":"",
+      "instance_count":2,
+      "dependency_components":[
+
+      ],
+      "require_resource":{
+        "cpu":"200m",
+        "memory":"256Mi"
+      },
+      "limit_resource":{
+        "cpu":"1200m",
+        "memory":"2048Mi"
+      },
+      "storage_mounts":[
+
+      ],
+      "coloring_nodes":[
+
+      ],
+      "configurations":[
+        "{\"httpport\":9527,\"stage\":\"prod\"}"
+      ],
+      "initial_delay_seconds":10,
+      "healthcheck_retry_times":10,
+      "healthcheck_interval":10,
+      "named_ports":[
+        {
+          "name":"httpport",
+          "port":18080
+        }
+      ],
+      "is_node_port":false,
+      "node_port_policy":"default",
+      "env_variables":[
+
+      ]
+    }
+  ]
+}
+
