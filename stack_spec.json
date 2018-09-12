@@ -1,14 +1,10 @@
 {
   "name":"easetest",
   "namespace":"default",
-  "cluster_name":"test",
+  "cluster_name":"changeme",
   "description":"The stack definition of easeapm",
   "pulse_event_interval":10,
-  "storages":[
-    {
-
-    }
-  ],
+  "storages":[ ],
   "healthcheck_retry_times":20,
   "healthcheck_interval":10,
   "env_variables":[
