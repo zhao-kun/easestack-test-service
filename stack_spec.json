@@ -2,9 +2,9 @@
   "name":"easetest",
   "namespace":"default",
   "cluster_name":"changeme",
-  "description":"The stack definition of easeapm",
+  "description":"The stack definition of test",
   "pulse_event_interval":10,
-  "storages":[ ],
+  "storages":[],
   "healthcheck_retry_times":20,
   "healthcheck_interval":10,
   "env_variables":[
@@ -29,7 +29,7 @@
       "image_version":"1.0-alpine",
       "type":"Stateless",
       "description":"",
-      "instance_count":2,
+      "instance_count":1,
       "dependency_components":[
 
       ],
@@ -48,7 +48,11 @@
 
       ],
       "configurations":[
-        "{\"httpport\":9527,\"stage\":\"prod\"}"
+        {
+          "key": "application",
+	  "value": "This is contents",
+          "use_as_file": "/megaease/application.yml"
+        }
       ],
       "initial_delay_seconds":10,
       "healthcheck_retry_times":10,
@@ -64,7 +68,38 @@
       "env_variables":[
 
       ]
+    },
+    {
+      "name":"test-server2",
+      "enable":true,
+      "image":"zhaokundev/easestack-test-server",
+      "image_version":"1.0-alpine",
+      "type":"Stateful",
+      "description":"",
+      "instance_count":1,
+      "dependency_components":[ ],
+      "require_resource":{
+        "cpu":"200m",
+        "memory":"256Mi"
+      },
+      "limit_resource":{
+        "cpu":"1200m",
+        "memory":"2048Mi"
+      },
+      "storage_mounts":[
+
+      ],
+      "coloring_nodes":[
+
+      ],
+      "configurations":[],
+      "initial_delay_seconds":10,
+      "healthcheck_retry_times":10,
+      "healthcheck_interval":10,
+      "named_ports":[],
+      "is_node_port":false,
+      "node_port_policy":"default",
+      "env_variables":[]
     }
   ]
 }
-
