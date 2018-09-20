@@ -5,8 +5,8 @@
   "description":"The stack definition of test",
   "pulse_event_interval":10,
   "storages":[],
-  "healthcheck_retry_times":20,
-  "healthcheck_interval":10,
+  "health_check_retry_times":20,
+  "health_check_interval":10,
   "env_variables":[
     {
       "name":"SCRIPT_LOG_LEVEL",
@@ -33,11 +33,11 @@
       "dependency_components":[
 
       ],
-      "require_resource":{
+      "resource_require":{
         "cpu":"200m",
         "memory":"256Mi"
       },
-      "limit_resource":{
+      "resource_limit":{
         "cpu":"1200m",
         "memory":"2048Mi"
       },
@@ -55,8 +55,8 @@
         }
       ],
       "initial_delay_seconds":10,
-      "healthcheck_retry_times":10,
-      "healthcheck_interval":10,
+      "health_check_retry_times":10,
+      "health_check_interval":10,
       "named_ports":[
         {
           "name":"httpport",
@@ -78,11 +78,11 @@
       "description":"",
       "instance_count":1,
       "dependency_components":[ ],
-      "require_resource":{
+      "resource_require":{
         "cpu":"200m",
         "memory":"256Mi"
       },
-      "limit_resource":{
+      "resource_limit":{
         "cpu":"1200m",
         "memory":"2048Mi"
       },
@@ -94,8 +94,8 @@
       ],
       "configurations":[],
       "initial_delay_seconds":10,
-      "healthcheck_retry_times":10,
-      "healthcheck_interval":10,
+      "health_check_retry_times":10,
+      "health_check_interval":10,
       "named_ports":[],
       "is_node_port":false,
       "node_port_policy":"default",
