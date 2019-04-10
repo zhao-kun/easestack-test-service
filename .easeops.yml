@@ -1,0 +1,25 @@
+registries:
+  - name: full-stacks
+    url: full-stacks.dev:5000
+
+clusters:
+  - name: full-stacks
+    stack_id: easestack-test-full_stacks
+    endpoint: 127.0.0.1:38080
+
+
+tasks:
+  - name: build_image
+    type: BuildTask
+    ignore_on_error: false
+    image_tag: "{{codepush.repository_full_name}}:{{codepush.commit_id}}"
+    dockerfile: rootfs/Dockerfile
+    post_process:
+      - eval: '{{set_context(codepush.repository_name+"_1",task.image_tag)}}'
+  - name: publish_image
+    type: PublishTask
+    ignore_on_error: false
+    image_tag: '{{get_context(codepush.repository_name+"_1")}}'
+    registry: full-stacks
+    post_process:
+      - eval: '{{set_context(codepush.repository_name + "_1",task.registry.url+"/"+task.image_tag)}}'
