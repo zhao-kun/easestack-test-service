@@ -10,7 +10,7 @@ RUN apk add --no-cache tini libc6-compat bash curl procps
 
 COPY --from=builder /megaease/test-server /megaease/test-server
 
-COPY health-check.sh2 /
+COPY health-check.sh /
 
 EXPOSE 18080
 
