@@ -1,11 +1,13 @@
 registries:
   - name: full-stacks
     url: full-stacks.dev:5000
+    username: admin
+    password: P@ssw0rd
 
 clusters:
-  - name: full-stacks
-    stack_id: easestack-test-full_stacks
-    endpoint: 127.0.0.1:38080
+  - name: zhaokun
+    stack_id: easetest-default-zhaokun
+    endpoint: es.zhaokun.org:18080
 
 
 tasks:
@@ -23,3 +25,9 @@ tasks:
     registry: full-stacks
     post_process:
       - eval: '{{set_context(codepush.repository_name + "_1",task.registry.url+"/"+task.image_tag)}}'
+  - name: deploy_with_easestack
+    type: DeployTask
+    ignore_on_error: false
+    cluster: zhaokun
+    image_tag: '{{get_context(codepush.repository_name+"_1")}}'
+    component: test-server
