@@ -31,3 +31,12 @@ tasks:
     cluster: zhaokun
     image_tag: '{{get_context(codepush.repository_name+"_1")}}'
     component: test-server
+  - name: update_configuration
+    type: ConfigUpdateTask
+    cluster: zhaokun
+    configs:
+      - component: test-server
+        items:
+          - file: test.yml
+            map_to_file: /config-volume/test-123.yml
+            is_sub_path: "false"

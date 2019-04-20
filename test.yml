@@ -1,0 +1,96 @@
+cluster_name: zhaokun
+components:
+- coloring_nodes: []
+  configurations:
+  - is_sub_path: true
+    use_as_file: /megaease/application.yml
+    value: This is contents
+  - use_as_file: /configmap-volume/other-sit.yml
+    value: This is other contents
+  dependency_components: []
+  description: ''
+  enable: true
+  env_variables: []
+  external_service:
+    rewrite_target: /
+    rules:
+    - host: localhost
+      paths:
+      - path: /hello
+        service_port: 18080
+  health_check_interval: 10
+  health_check_retry_times: 10
+  image: full-stacks.dev:5000/zhao-kun/easestack-test-service
+  image_version: 34cb6e4
+  initial_delay_seconds: 10
+  instance_count: 1
+  is_node_port: false
+  name: test-server
+  named_ports:
+  - name: httpport
+    port: 18080
+  node_port_policy: default
+  resource_limit:
+    cpu: 1200m
+    memory: 2048Mi
+  resource_require:
+    cpu: 200m
+    memory: 256Mi
+  storage_mounts: {}
+  type: Stateless
+- coloring_nodes: []
+  configurations: []
+  dependency_components: []
+  description: ''
+  enable: true
+  env_variables: []
+  external_service:
+    rewrite_target: /
+    rules:
+    - host: localhost
+      paths:
+      - path: /server2
+        service_port: 18080
+  health_check_interval: 10
+  health_check_retry_times: 10
+  image: zhaokundev/easestack-test-server
+  image_version: 1.0-alpine
+  initial_delay_seconds: 10
+  instance_count: 1
+  is_node_port: false
+  name: test-server1
+  named_ports:
+  - name: httpport
+    port: 18080
+  node_port_policy: default
+  resource_limit:
+    cpu: 1200m
+    memory: 2048Mi
+  resource_require:
+    cpu: 200m
+    memory: 256Mi
+  storage_mounts: {}
+  type: Stateless
+description: The stack definition of easeapm
+env_variables:
+- name: SCRIPT_LOG_LEVEL
+  value: DEBUG
+- name: INFRASTRUCTURE_PROVIDER
+  value: aws
+- name: DOMAIN_PATH
+  value: svc.cluster.local
+health_check_interval: 10
+health_check_retry_times: 20
+name: easetest
+namespace: default
+pulse_event_interval: 10
+image_pull_secret_names:
+  full-stacks.dev:5000: fullstacksdev
+
+#storage_pool:
+#  pvc_pool:
+#  - access_modes:
+#    - ReadWriteOnce
+#    name: local-pvc
+#    request_size: 2Gi
+#    storage_class_name: local-storage
