@@ -40,3 +40,8 @@ tasks:
           - file: test.yml
             map_to_file: /config-volume/test-123.yml
             is_sub_path: "false"
+
+notifications:
+  emails:
+  - zhaokun@megaease.com
+
