@@ -1,8 +1,6 @@
 registries:
   - name: full-stacks
     url: full-stacks.dev:5000
-    username: admin
-    password: P@ssw0rd
 
 clusters:
   - name: zhaokun
